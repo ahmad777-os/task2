@@ -1,0 +1,346 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #f4f2ee;
+    --card: #ffffff;
+    --ink: #1a1510;
+    --muted: #7a7060;
+    --accent: #3d6b4f;
+    --accent-light: #e8f1eb;
+    --error: #b84040;
+    --error-bg: #fdf0f0;
+    --border: #e0dbd2;
+    --focus-ring: rgba(61, 107, 79, 0.18);
+}
+
+body {
+    min-height: 100vh;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Karla', sans-serif;
+    padding: 2rem;
+    position: relative;
+}
+
+/* Decorative shapes */
+body::before {
+    content: '';
+    position: fixed;
+    top: -80px;
+    right: -80px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(61, 107, 79, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    bottom: -60px;
+    left: -60px;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(61, 107, 79, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.card {
+    background: var(--card);
+    border-radius: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), 0 12px 48px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 440px;
+    overflow: hidden;
+}
+
+.card-top {
+    background: var(--accent);
+    padding: 2.2rem 2.4rem 1.8rem;
+    position: relative;
+}
+
+.card-top::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 24px;
+    background: var(--card);
+    border-radius: 24px 24px 0 0;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 100px;
+    padding: 0.3rem 0.75rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 1rem;
+}
+
+.badge .pip {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #a0e0b4;
+}
+
+.card-top h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.15;
+}
+
+.card-top p {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.87rem;
+    margin-top: 0.5rem;
+    line-height: 1.6;
+}
+
+.card-body {
+    padding: 1.6rem 2.4rem 2.4rem;
+}
+
+.field {
+    margin-bottom: 1.25rem;
+}
+
+label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+}
+
+label .hint {
+    font-family: 'Karla', sans-serif;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+.input-wrap {
+    position: relative;
+}
+
+input {
+    width: 100%;
+    padding: 0.78rem 2.5rem 0.78rem 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    font-family: 'Karla', sans-serif;
+    font-size: 0.95rem;
+    color: var(--ink);
+    background: #fafaf8;
+    outline: none;
+    transition: all 0.22s;
+}
+
+input::placeholder {
+    color: #bab5ac;
+}
+
+input:focus {
+    border-color: var(--accent);
+    background: #fff;
+    box-shadow: 0 0 0 4px var(--focus-ring);
+}
+
+input.state-valid {
+    border-color: var(--accent);
+    background: #fff;
+}
+
+input.state-invalid {
+    border-color: var(--error);
+    background: var(--error-bg);
+}
+
+.status-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.status-icon.visible {
+    opacity: 1;
+}
+
+.status-icon.ok {
+    color: var(--accent);
+}
+
+.status-icon.bad {
+    color: var(--error);
+}
+
+.err {
+    font-size: 0.78rem;
+    color: var(--error);
+    margin-top: 0.38rem;
+    padding-left: 0.1rem;
+    min-height: 1.1em;
+    display: block;
+    opacity: 0;
+    transform: translateY(-3px);
+    transition: all 0.2s;
+}
+
+.err.on {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Password toggle */
+.toggle-pw {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--muted);
+    padding: 0;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.15s;
+}
+
+.toggle-pw:hover {
+    opacity: 1;
+}
+
+.has-toggle input {
+    padding-right: 3rem;
+}
+
+/* Progress dots */
+.progress {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+}
+
+.progress-dot {
+    height: 4px;
+    flex: 1;
+    border-radius: 100px;
+    background: var(--border);
+    transition: background 0.3s;
+}
+
+.progress-dot.filled {
+    background: var(--accent);
+}
+
+.btn {
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--ink);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s, transform 0.12s;
+}
+
+.btn:hover {
+    background: var(--accent);
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.footer-note {
+    text-align: center;
+    font-size: 0.79rem;
+    color: var(--muted);
+    margin-top: 1.2rem;
+}
+
+.footer-note a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.success-card {
+    display: none;
+    background: var(--accent-light);
+    border: 1.5px solid #b0d4bc;
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    text-align: center;
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.success-card.show {
+    display: block;
+    animation: pop 0.35s ease;
+}
+
+@keyframes pop {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 480px) {
+
+    .card-top,
+    .card-body {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}

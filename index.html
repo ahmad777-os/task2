@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task 2 — Simple Signup Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Karla:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+  <div class="card-top">
+    <div class="badge"><span class="pip"></span> Task 2</div>
+    <h1>Join us<br/>today.</h1>
+  </div>
+
+  <div class="card-body">
+    <div class="progress">
+      <div class="progress-dot" id="pd1"></div>
+      <div class="progress-dot" id="pd2"></div>
+      <div class="progress-dot" id="pd3"></div>
+    </div>
+
+    <form id="simpleForm" novalidate>
+
+      <div class="field">
+        <label for="name">Full Name</label>
+        <div class="input-wrap">
+          <input type="text" id="name" placeholder="e.g. Ahmad Tariq" autocomplete="off"/>
+          <span class="status-icon" id="si-name"></span>
+        </div>
+        <span class="err" id="e-name"></span>
+      </div>
+
+      <div class="field">
+        <label for="mail">Email <span class="hint">we'll never spam</span></label>
+        <div class="input-wrap">
+          <input type="email" id="mail" placeholder="admadtariq@example.com" autocomplete="off"/>
+          <span class="status-icon" id="si-mail"></span>
+        </div>
+        <span class="err" id="e-mail"></span>
+      </div>
+
+      <div class="field">
+        <label for="pass">Password <span class="hint">min 6 characters</span></label>
+        <div class="input-wrap has-toggle">
+          <input type="password" id="pass" placeholder="Create a password"/>
+          <button type="button" class="toggle-pw" id="togglePw" aria-label="Toggle password">👁</button>
+        </div>
+        <span class="err" id="e-pass"></span>
+      </div>
+
+      <button class="btn" type="submit">Create My Account</button>
+      <div class="success-card" id="successMsg">You're in! Account created successfully.</div>
+    </form>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
